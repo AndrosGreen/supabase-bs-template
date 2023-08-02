@@ -1,23 +1,21 @@
-import { useState } from "react";
-import { Button, Container } from "reactstrap";
-import LoginDialog from "./components/LoginDialog";
+import { useContext } from "react";
+import { Container } from "reactstrap";
+import { UserContext } from "./Layout";
+import NavbarUser from "./components/NavbarUser";
 
 function App() {
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const { session } = useContext(UserContext);
 
   return (
     <>
-      <div className="p-4">
+      <div className="p-2">
         <Container>
-          <h3>Hi There</h3>
-          <Button color="primary" onClick={handleOpen}>
-            Login
-          </Button>
+          <NavbarUser />
+          <div className="mt-4">
+            <h3>Hi There</h3>
+            <div>{session?.user ? "user logged in" : "user is logged out"}</div>
+          </div>
         </Container>
-        <LoginDialog open={open} onClose={handleClose} />
       </div>
     </>
   );

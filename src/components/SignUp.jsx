@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Label, Input, Form, FormGroup, Button } from "reactstrap";
 import { supaClient } from "../supa-client";
 
-const SignUp = ({ createAccount }) => {
+const SignUp = ({ createAccount, onClose }) => {
   const [input, setInput] = useState(null);
 
   const handleInput = (e) => {
@@ -19,8 +19,7 @@ const SignUp = ({ createAccount }) => {
       email: input.email,
       password: input.password,
     });
-    console.log(error);
-    console.log(input);
+    onClose();
   };
 
   return (
